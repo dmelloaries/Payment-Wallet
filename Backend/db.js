@@ -1,5 +1,8 @@
-const mongoose=require("mongoose");
-//mongoose.connect("")
+require("dotenv").config();
+const mongoose = require("mongoose");
+
+
+mongoose.connect(process.env.MongoDB_Url);
 
 
 // Create a Schema for Users

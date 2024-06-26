@@ -4,6 +4,3 @@ const app=express();
 const router=express.Router();
 
 
-router.get("/accounts",(req,res)=>{
-
-});
