@@ -1,14 +1,16 @@
-const express = require("express");
-const app = express();
-const rootRouter = require("./routes/index");
+// backend/index.js
+const express = require('express');
 const cors = require("cors");
+const rootRouter = require("./routes/index2"); // Assuming this is your router file
+const port = 3000;
+
+const app = express();
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1", rootRouter);
 
-app.listen(3000)=()=>{
-    console.log("localhost running on port",port);
-
-};
+app.listen(port, () => {
+    console.log("APP is Running on port", port);
+});

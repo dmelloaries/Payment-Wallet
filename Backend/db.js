@@ -1,8 +1,19 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+require('dotenv').config();
+const MONGO_URI = process.env.Mongodb_Url;
 
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("DB Connected");
+  })
+  .catch(err => {
+    console.log(`DB Connection Error: ${err.message}`);
+  });
 
-mongoose.connect(process.env.MongoDB_Url);
+mongoose.connection.on("error", err => {
+  console.log(`DB Connection Error: ${err.message}`);
+});
+
 
 
 // Create a Schema for Users
@@ -35,9 +46,22 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-// Create a model from the schema
+const accountSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to User model
+        ref: 'User',
+        required: true
+    },
+    balance: {
+        type: Number,
+        required: true
+    }
+});
+
+const Account = mongoose.model('Account', accountSchema);
 const User = mongoose.model('User', userSchema);
 
 module.exports = {
-	User
+	User,
+    Account
 };
