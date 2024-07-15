@@ -1,7 +1,7 @@
 // backend/index.js
 const express = require('express');
 const cors = require("cors");
-const rootRouter = require("./routes/index2"); // Assuming this is your router file
+const rootRouter = require("./Routes/index2"); // Assuming this is your router file
 const port = 3000;
 
 const app = express();
